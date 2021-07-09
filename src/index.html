@@ -1,0 +1,205 @@
+<html>
+
+<head>
+    <title>AseanPayWallet</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+    <div class="centerer" id="screen-account">
+        <div class="centered">
+            <h1>AseanPayWallet - account creation and import</h1>
+            <hr />
+            <h2>Import Keystore</h2>
+            <table>
+                <tr>
+                    <th>Keystore:</th>
+                    <td>
+                        <div class="file" id="select-wallet-drop">Drag Json File Here</div><input type="file"
+                            id="select-wallet-file" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Password:</th>
+                    <td><input type="password" placeholder="(password)" id="select-wallet-password" /></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <div id="select-submit-wallet" class="submit disable">Decrypt</div>
+                    </td>
+                </tr>
+            </table>
+
+            <hr />
+            <h2>Mnemonic method</h2>
+            <table>
+                <tr>
+                    <th>Mnemonic:</th>
+                    <td><input type="text" placeholder="(mnemonic phrase)" id="select-mnemonic-phrase" /></td>
+                </tr>
+                <tr>
+                    <th>Path:</th>
+                    <td><input type="text" placeholder="(path)" id="select-mnemonic-path" value="m/44'/60'/0'/0/0" />
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <div id="select-submit-mnemonic" class="submit">Derive</div>
+                    </td>
+                </tr>
+            </table>
+
+            <hr />
+            <h2>Privatekey method</h2>
+            <p>
+            </p>
+            <table>
+                <tr>
+                    <th>Privatekey:</th>
+                    <td><input type="text" placeholder="(private key)" id="select-privatekey" /></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <div id="select-submit-privatekey" class="submit">Import private key</div>
+                    </td>
+                </tr>
+            </table>
+
+            <hr />
+
+        </div>
+    </div>
+    <div class="centerer hidden" id="screen-loading">
+        <div class="centered">
+            <h1 id="loading-header">
+                </h2>
+                <table>
+                    <tr>
+                        <th>Schedule:</th>
+                        <td>
+                            <input type="text" readonly="readonly" class="readonly" id="loading-status" value="" />
+        </div>
+        </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>
+                <div id="loading-cancel" class="submit">Cancel</div>
+            </td>
+        </tr>
+        </table>
+
+        <hr />
+
+    </div>
+    </div>
+    <div class="centerer hidden" id="screen-wallet">
+        <div class="centered">
+            <h1>AseanPayWallet<span id="wallet-username" class="username right"></span></h1>
+            <hr />
+            <h3>Details of APW wallet:</h3>
+            <table>
+                <tr>
+                    <th>Address:</th>
+                    <td>
+                        <input type="text" readonly="readonly" class="readonly" id="wallet-address" value="" />
+        </div>
+        </td>
+        </tr>
+        <tr>
+            <th>Balance:</th>
+            <td>
+                <input type="text" readonly="readonly" class="readonly" id="wallet-balance" value="0.0" />
+    </div>
+    </td>
+    </tr>
+    <tr>
+        <th>APW Token:</th>
+        <td>
+            <input type="text" readonly="readonly" class="readonly" id="wallet-token-balance" value="0.0" /></div>
+        </td>
+    </tr>
+    <tr>
+        <th>Nonce:</th>
+        <td>
+            <input type="text" readonly="readonly" class="readonly" id="wallet-transaction-count" value="0" /></div>
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td>
+            <div id="wallet-submit-refresh" class="submit">Refresh</div>
+        </td>
+    </tr>
+    </table>
+    <h3>ETH Transfer:</h3>
+    <table>
+        <tr>
+            <th>Send to:</th>
+            <td><input type="text" placeholder="(target address)" id="wallet-send-target-address" /></td>
+        </tr>
+        <tr>
+            <th>Amount:</th>
+            <td><input type="text" placeholder="(amount)" id="wallet-send-amount" /></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>
+                <div id="wallet-submit-send" class="submit disable">Send</div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Transaction of APW token:</h3>
+    <table>
+        <tr>
+            <th>Send to:</th>
+            <td><input type="text" placeholder="(target address)" id="wallet-token-send-target-address" /></td>
+        </tr>
+        <tr>
+            <th>Amount:</th>
+            <td><input type="text" placeholder="(amount)" id="wallet-token-send-amount" /></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>
+                <div id="wallet-token-submit-send" class="submit disable">Send</div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>KeyStore exports:</h3>
+    <table>
+        <tr>
+            <th>Password:</th>
+            <td><input type="text" placeholder="(password)" id="save-keystore-file-pwd" /></td>
+        </tr>
+
+        <tr>
+            <td> </td>
+            <td>
+                <div id="save-keystore" class="submit">exports</div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Information of transaction：</h3>
+    <div id="wallet-activity" class="activity"></div>
+
+    <hr />
+
+    </div>
+    </div>
+
+    <script type="text/javascript" src="ethers-v4.min.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="page.js"></script>
+    <script type="text/javascript" src="FileSaver.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>
